@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  width: 100%;
+
+  .wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding-top: 5vw;
+
+    .cardsWrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      row-gap: 1vw;
+      justify-content: space-around;
+
+
+      .imgWrapper {
+        width: 19%;
+
+      }
+    }
+
+
+  }
+}

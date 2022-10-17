@@ -1,1 +1,48 @@
-<p>header works!</p>
+<section class="wrapper">
+  <mat-toolbar color="primary">
+<!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--      <mat-icon>menu</mat-icon>-->
+<!--    </button>-->
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <span class="application-header">My application for getting photos from Mars rovers</span>
+    <span class="example-spacer"></span>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Select rover</mat-label>
+      <mat-select>
+        <mat-option value="Curiosity">Curiosity rover</mat-option>
+        <mat-option value="Opportunity">Opportunity rover</mat-option>
+        <mat-option value="Spirit">Opportunity rover</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Input sol</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Select camera</mat-label>
+      <mat-select>
+        <mat-option value="FHAZ">FHAZ camera</mat-option>
+        <mat-option value="RHAZ">RHAZ camera</mat-option>
+        <mat-option value="MAST">MAST camera</mat-option>
+        <mat-option value="CHEMCAM">CHEMCAM camera</mat-option>
+        <mat-option value="MAHLI">MAHLI camera</mat-option>
+        <mat-option value="MARDI">MARDI camera</mat-option>
+        <mat-option value="NAVCAM">NAVCAM camera</mat-option>
+        <mat-option value="PANCAM">PANCAM camera</mat-option>
+        <mat-option value="MINITES">MINITES camera</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<!--    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
+<!--      <mat-icon>favorite</mat-icon>-->
+<!--    </button>-->
+<!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
+<!--      <mat-icon>share</mat-icon>-->
+<!--    </button>-->
+  </mat-toolbar>
+</section>

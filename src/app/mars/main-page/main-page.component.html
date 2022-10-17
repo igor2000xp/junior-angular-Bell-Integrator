@@ -1,1 +1,9 @@
-<p>main-page works!</p>
+<section class="wrapper">
+  <div class="cardsWrapper">
+    <app-img-card
+      class="imgWrapper"
+      *ngFor="let photo of photos | slice:0:20" [photo]="photo"
+    >
+    </app-img-card>
+  </div>
+</section>
