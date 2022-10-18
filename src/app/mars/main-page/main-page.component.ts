@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GetPhotoService } from '../../core/services/get-photo.service';
-import { IPhoto } from '../models/main-page.models';
+import { Cameras, IPhoto, RoverName } from '../models/main-page.models';
 import { BehaviorSubject } from 'rxjs';
 import { RoverService } from '../../core/services/rover.service';
+import { SolService } from '../../core/services/sol.service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,21 +14,33 @@ export class MainPageComponent implements OnInit, OnDestroy {
   public photos:IPhoto[] = [];
   public loading = false;
   public photos$: BehaviorSubject<IPhoto[]>;
-  private rover = 'Opportunity';
+  private rover = RoverName.Opportunity;
+  private sol = 49;
+  private camera = Cameras.MAST;
 
   constructor(
     private getPhotos: GetPhotoService,
     private roverService: RoverService,
+    private solService: SolService,
   ) { }
 
-  private log(data: string): void {
+  private logRover(data: RoverName): void {
     console.log(data, 'receive data');
     this.rover = data;
-    this.getPhotos.getAll(this.rover).subscribe((data) => {
+    this.getPhotos.getAll(this.rover, this.sol, this.camera).subscribe((data) => {
       // this.photos$.next(data.photos);
       this.photos = data.photos;
       // this.loading = false;
     });
+  }
+  private logSol(sol: number) {
+    this.sol = sol;
+    // this.photos = this.getPhotos.getAll(this.rover, this.sol, this.camera);
+    this.getPhotos.getAll(this.rover, this.sol, this.camera)
+      .subscribe((data) => {
+        this.photos = data.photos;
+    });
+
   }
 
   ngOnInit(): void {
@@ -38,9 +51,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     //   tap((data) => this.photos$ = data.photos)
     // );
     // ngOnInit(): void {
-    this.roverService.rover$.subscribe((rover) => this.log(rover));
+    this.roverService.rover$.subscribe((rover) => this.logRover(rover));
+    this.solService.sol$.subscribe((sol) => this.logSol(sol));
     // }
-    this.getPhotos.getAll(this.rover).subscribe((data) => {
+    this.getPhotos.getAll(this.rover, this.sol, this.camera).subscribe((data) => {
       // this.photos$.next(data.photos);
       this.photos = data.photos;
       // this.loading = false;

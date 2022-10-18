@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
-import { Cameras, IPhotos } from '../../mars/models/main-page.models';
+import { Cameras, IPhotos, RoverName } from '../../mars/models/main-page.models';
 import { API_KEY, HTML_REQUEST_TEMPLATE } from '../../constants';
 import { ErrorService } from './error.service';
 // import { RoverService } from './rover.service';
@@ -24,9 +24,11 @@ export class GetPhotoService {
     this.requestString = `${HTML_REQUEST_TEMPLATE}${this.rover}/photos?sol=${this.sol}&camera=${this.camera}&api_key=${API_KEY}`
   }
 
-  getAll(rover:string): Observable<IPhotos> {
-    console.log(rover, '-getAll()');
+  getAll(rover:RoverName, sol:number, camera:Cameras): Observable<IPhotos> {
+    console.log(rover, sol, '-getAll()');
     this.rover = rover;
+    this.sol = sol;
+    this.camera = camera;
     this.requestString = `${HTML_REQUEST_TEMPLATE}${this.rover}/photos?sol=${this.sol}&camera=${this.camera}&api_key=${API_KEY}`
     return this.http.get<IPhotos>(this.requestString)
       .pipe(

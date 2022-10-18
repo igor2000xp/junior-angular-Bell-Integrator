@@ -6,10 +6,10 @@ import { RoverName } from '../../mars/models/main-page.models';
   providedIn: 'root'
 })
 export class RoverService {
-  public rover$ = new BehaviorSubject<string>(RoverName.Curiosity)
+  public rover$ = new BehaviorSubject<RoverName>(RoverName.Curiosity)
 
   // constructor() { }
-  public setRover(rover:string) {
+  public setRover(rover:RoverName) {
     console.log(rover,'-service');
     this.rover$.next(rover);
   }
