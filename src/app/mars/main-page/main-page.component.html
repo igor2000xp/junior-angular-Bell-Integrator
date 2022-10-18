@@ -1,8 +1,11 @@
 <section class="wrapper">
   <div class="cardsWrapper">
+    <div *ngIf="loading">
+      <h2>Loading...</h2>
+    </div>
     <app-img-card
       class="imgWrapper"
-      *ngFor="let photo of photos | slice:0:20" [photo]="photo"
+      *ngFor="let photo of photos | slice:0:20 " [photo]="photo"
     >
     </app-img-card>
   </div>

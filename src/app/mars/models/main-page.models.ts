@@ -32,9 +32,9 @@ export enum CameraFullName {
   MINITES = 'Miniature Thermal Emission Spectrometer (Mini-TES)',
 }
 export enum RoverName {
-  Curiosity = 5,
-  Opportunity,
-  Spirit,
+  Curiosity = 'Curiosity',
+  Opportunity = 'Opportunity',
+  Spirit = 'Spirit',
 }
 export enum Status {
   active,

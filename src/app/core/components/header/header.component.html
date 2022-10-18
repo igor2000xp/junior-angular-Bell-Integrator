@@ -11,21 +11,21 @@
 
     <mat-form-field appearance="standard">
       <mat-label>Select rover</mat-label>
-      <mat-select>
+      <mat-select [value]="rover" [(ngModel)]="rover" (selectionChange)="changeRoverHandler(rover)">
         <mat-option value="Curiosity">Curiosity rover</mat-option>
         <mat-option value="Opportunity">Opportunity rover</mat-option>
-        <mat-option value="Spirit">Opportunity rover</mat-option>
+        <mat-option value="Spirit">Spirit rover</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="standard">
       <mat-label>Input sol</mat-label>
-      <input matInput>
+      <input matInput [value]="'49'" [(ngModel)]="sol" (change)="changeSolHandler(sol)">
     </mat-form-field>
 
     <mat-form-field appearance="standard">
       <mat-label>Select camera</mat-label>
-      <mat-select>
+      <mat-select [value]="camera" [(ngModel)]="cameraValue" (selectionChange)="changeCameraHandler(cameraValue)">
         <mat-option value="FHAZ">FHAZ camera</mat-option>
         <mat-option value="RHAZ">RHAZ camera</mat-option>
         <mat-option value="MAST">MAST camera</mat-option>
