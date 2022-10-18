@@ -4,6 +4,7 @@ import { Cameras, IPhoto, RoverName } from '../models/main-page.models';
 import { BehaviorSubject } from 'rxjs';
 import { RoverService } from '../../core/services/rover.service';
 import { SolService } from '../../core/services/sol.service';
+import { CameraService } from '../../core/services/camera.service';
 
 @Component({
   selector: 'app-main-page',
@@ -22,6 +23,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private getPhotos: GetPhotoService,
     private roverService: RoverService,
     private solService: SolService,
+    private cameraService: CameraService,
   ) { }
 
   private logRover(data: RoverName): void {
@@ -40,7 +42,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.photos = data.photos;
     });
-
+  }
+  public logCamera(camera: Cameras) {
+    this.camera = camera;
+    this.getPhotos.getAll(this.rover, this.sol, this.camera)
+      .subscribe((data) => {
+        this.photos = data.photos;
+    })
   }
 
   ngOnInit(): void {
@@ -53,6 +61,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     // ngOnInit(): void {
     this.roverService.rover$.subscribe((rover) => this.logRover(rover));
     this.solService.sol$.subscribe((sol) => this.logSol(sol));
+    this.cameraService.camera$.subscribe((camera) => this.logCamera(camera));
     // }
     this.getPhotos.getAll(this.rover, this.sol, this.camera).subscribe((data) => {
       // this.photos$.next(data.photos);
@@ -63,6 +72,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.roverService.rover$.unsubscribe();
+    this.solService.sol$.unsubscribe();
+    this.cameraService.camera$.unsubscribe();
+    // this.getPhotos.getAll(this.rover, this.sol, this.camera).un
   }
 
 }

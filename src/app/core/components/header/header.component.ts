@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cameras, RoverName } from '../../../mars/models/main-page.models';
 import { RoverService } from '../../services/rover.service';
 import { SolService } from '../../services/sol.service';
+import { CameraService } from '../../services/camera.service';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +18,13 @@ export class HeaderComponent implements OnInit {
   constructor(
     private roverService: RoverService,
     private solService: SolService,
+    private cameraService: CameraService,
   ) { }
 
-  changeCameraHandler(cameraValue: Cameras): void {
-    console.log(cameraValue);
+  changeCameraHandler(camera: Cameras): void {
+    console.log(camera);
+    this.cameraService.setCamera(camera);
+
   }
   changeRoverHandler(rover: RoverName): void {
     console.log(rover);
