@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, Subject, throwError } from 'rxjs';
-import { Cameras, IPhotos, RoverName } from '../../../mars/models/main-page.models';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { Cameras, IPhoto, IPhotos, RoverName } from '../../../mars/models/main-page.models';
 import { API_KEY, HTML_ROVER_TEMPLATE } from '../../../constants';
 import { ErrorService } from '../error.service';
-// import { RoverService } from './rover.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiGetPhotoService{
-  public rover:string = 'curiosity';
+  public rover:RoverName = RoverName.Opportunity;
   public sol:number = 49;
   public camera:Cameras = Cameras.MAST;
   public requestString:string = '';
-  public rover$ = new Subject();
-  public photos$:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+
+  public photos$:BehaviorSubject<IPhoto[]> = new BehaviorSubject<IPhoto[]>([]);
 
   constructor(
     private http: HttpClient,
     private errorService: ErrorService,
-    // private roverService: RoverService,
     ) {
     this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos?sol=${this.sol}&camera=${this.camera}&api_key=${API_KEY}`
   }
@@ -36,10 +34,9 @@ export class ApiGetPhotoService{
     const page = 1;
     params = params.append('page', page);
     params = params.append('api_key', API_KEY);
-    // this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos?sol=${this.sol}&camera=${this.camera}&api_key=${API_KEY}`
+
     this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos`;
     return this.http.get<IPhotos>(this.requestString, { params: params })
-      // .subscribe()
       .pipe(
         map((element) => {
           console.log(element.photos);

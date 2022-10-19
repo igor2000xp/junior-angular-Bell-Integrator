@@ -5,14 +5,14 @@
     </div>
     <app-img-card
       class="imgWrapper"
-      *ngFor="let photo of photos | async" [photo]="photo"
+      *ngFor="let photo of photos$ | async" [photo]="photo"
     >
     </app-img-card>
   </div>
   <div class="paginator">
     <mat-paginator [length]="maxSol"
                    [pageSize]="25"
-                   [pageSizeOptions]="[25, 100]"
+                   [pageSizeOptions]="[25]"
                    aria-label="Select page">
     </mat-paginator>
 
