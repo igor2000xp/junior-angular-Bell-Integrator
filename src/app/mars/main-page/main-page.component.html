@@ -10,11 +10,13 @@
     </app-img-card>
   </div>
   <div class="paginator">
-    <mat-paginator [length]="maxPhoto"
-                   [pageSize]="25"
-                   [pageSizeOptions]="[25]"
-                   aria-label="Select page">
-    </mat-paginator>
+<!--    <mat-button-toggle class="moreButton">More ...</mat-button-toggle>-->
+    <button class="moreButton" mat-stroked-button color="primary" (click)="onClickHandle()">Load more...</button>
+<!--    <mat-paginator [length]="maxPhoto"-->
+<!--                   [pageSize]="25"-->
+<!--                   [pageSizeOptions]="[25]"-->
+<!--                   aria-label="Select page">-->
+<!--    </mat-paginator>-->
 
   </div>
 

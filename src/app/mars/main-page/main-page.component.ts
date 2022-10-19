@@ -41,6 +41,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
   // private tunePagesParams(maxSol: number, currentSol:number) {
   //
   // }
+  onClickHandle() {
+    console.log('click');
+
+  }
 
   private logRover(data: RoverName): void {
     console.log(data, 'receive data');
