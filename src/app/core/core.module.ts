@@ -26,7 +26,7 @@ const materialModules = [
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
   ],
   exports: [
     HeaderComponent,
