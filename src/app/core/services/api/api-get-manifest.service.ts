@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IWrappedManifest, RoverName } from '../../../mars/models/main-page.models';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { HTML_MANIFEST_TEMPLATE, HTML_MANIFEST_TEMPLATE_SECOND } from '../../../constants';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { API_KEY, HTML_MANIFEST_TEMPLATE } from '../../../constants';
+import { catchError, map, Observable, Subject, throwError } from 'rxjs';
 import { ErrorService } from '../error.service';
 
 @Injectable({
@@ -12,17 +12,24 @@ export class ApiGetManifestService{
   public rover = RoverName.Curiosity;
   private requestString = '';
 
+  public manifest$ = new Subject();
+
 
   constructor(
     private errorService: ErrorService,
     private http: HttpClient,
   ) {
-    this.requestString = `${HTML_MANIFEST_TEMPLATE}${this.rover}${HTML_MANIFEST_TEMPLATE_SECOND}`;
+    // this.requestString = `${HTML_MANIFEST_TEMPLATE}${this.rover}${HTML_MANIFEST_TEMPLATE_SECOND}`;
   }
   getAll(rover: RoverName): Observable<IWrappedManifest> {
     this.rover = rover;
-    this.requestString = `${HTML_MANIFEST_TEMPLATE}${this.rover}${HTML_MANIFEST_TEMPLATE_SECOND}`;
-    return this.http.get<IWrappedManifest>(this.requestString).pipe(
+    let params = new HttpParams().set('api_key', API_KEY);
+    this.requestString = `${HTML_MANIFEST_TEMPLATE}${this.rover}`;
+    return this.http.get<IWrappedManifest>(this.requestString, { params: params }).pipe(
+      map((el) => {
+        this.manifest$.next(el.photo_manifest);
+        return el;
+      }),
       catchError(this.errorHandler.bind(this)),
     );
   }

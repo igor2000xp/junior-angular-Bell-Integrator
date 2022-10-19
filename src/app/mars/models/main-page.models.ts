@@ -51,13 +51,13 @@ export interface IManifest {
   max_sol: number;
   max_date: Date;
   total_photos: number;
-  photos: IManifestPhotos[];
+  photos: IManifestPhoto[];
 }
-export interface IManifestPhotos {
+export interface IManifestPhoto{
   sol: number;
   earth_date: Date;
   total_photos: number;
-  cameras?: Cameras;
+  cameras?: Cameras[];
 }
 export enum Cameras {
   FHAZ = 'FHAZ',

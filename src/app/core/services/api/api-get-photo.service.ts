@@ -24,7 +24,7 @@ export class ApiGetPhotoService{
   }
 
   getAll(rover:RoverName, sol:number, camera:Cameras): Observable<IPhotos> {
-    console.log(rover, sol, '-getAll()');
+    console.log(rover, sol, camera, 'api-photo');
     this.rover = rover;
     this.sol = sol;
     this.camera = camera;
@@ -39,7 +39,6 @@ export class ApiGetPhotoService{
     return this.http.get<IPhotos>(this.requestString, { params: params })
       .pipe(
         map((element) => {
-          console.log(element.photos);
           this.photos$.next(element.photos);
           return element;
         }),
