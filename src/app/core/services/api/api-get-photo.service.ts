@@ -25,7 +25,6 @@ export class ApiGetPhotoService{
   }
 
   getAll(rover:RoverName, sol:number, camera:Cameras, page:number): Observable<IPhotos> {
-    console.log(rover, sol, camera, page, 'api-photo');
     this.rover = rover;
     this.sol = sol;
     this.camera = camera;
@@ -33,7 +32,6 @@ export class ApiGetPhotoService{
     let params = new HttpParams();
     params = params.append('sol', this.sol);
     params = params.append('camera', this.camera);
-    // const page = 1;
     params = params.append('page', page);
     params = params.append('api_key', API_KEY);
 

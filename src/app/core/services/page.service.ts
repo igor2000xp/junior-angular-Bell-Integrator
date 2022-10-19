@@ -9,7 +9,6 @@ export class PageService {
 
   public setPage(page: number) {
     this.page$.next(page);
-    console.log(this.page$);
   }
 
 }

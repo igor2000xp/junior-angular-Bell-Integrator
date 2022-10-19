@@ -8,9 +8,7 @@ import { RoverName } from '../../mars/models/main-page.models';
 export class RoverService {
   public rover$ = new BehaviorSubject<RoverName>(RoverName.Curiosity)
 
-  // constructor() { }
   public setRover(rover:RoverName) {
-    console.log(rover,'-service');
     this.rover$.next(rover);
   }
 }

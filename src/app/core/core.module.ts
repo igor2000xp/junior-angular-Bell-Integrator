@@ -11,8 +11,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { ApiGetPhotoService } from './services/get-photo.service';
-// import { ParamsInterceptor } from './interceptors/params.interceptor';
 
 const materialModules = [
   MatFormFieldModule,

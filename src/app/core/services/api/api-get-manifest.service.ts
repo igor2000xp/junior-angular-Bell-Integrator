@@ -19,7 +19,6 @@ export class ApiGetManifestService{
     private errorService: ErrorService,
     private http: HttpClient,
   ) {
-    // this.requestString = `${HTML_MANIFEST_TEMPLATE}${this.rover}${HTML_MANIFEST_TEMPLATE_SECOND}`;
   }
   getAll(rover: RoverName): Observable<IWrappedManifest> {
     this.rover = rover;

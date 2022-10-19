@@ -5,7 +5,6 @@ import { SolService } from '../../services/sol.service';
 import { CameraService } from '../../services/camera.service';
 import { ApiGetManifestService } from '../../services/api/api-get-manifest.service';
 import { Subscription } from 'rxjs';
-// import { PageService } from '../../services/page.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public cameraValue = Cameras.MAST;
 
   private subManifest = new Subscription();
-  // private manifest:I
 
   constructor(
     private roverService: RoverService,
@@ -31,35 +29,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   changeCameraHandler(camera: Cameras): void {
-    // console.log(camera);
     this.cameraService.setCamera(camera);
     this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
       const manifest:IManifest = el.photo_manifest;
       this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
-      // console.log(this.camerasArray);
     });
 
   }
   changeRoverHandler(rover: RoverName): void {
-    // console.log(rover);
     this.roverService.setRover(rover);
     this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
       const manifest:IManifest = el.photo_manifest;
       this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
-      // console.log(this.camerasArray);
     });
 
   }
   changeSolHandler(sol: number): void {
-    // console.log(sol);
     this.solService.setSol(sol);
     this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
       const manifest:IManifest = el.photo_manifest;
       this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
-      // console.log(this.camerasArray);
     });
   }
 
@@ -68,12 +60,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       const manifest:IManifest = el.photo_manifest;
       this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
-      // console.log(this.camerasArray);
     });
   }
 
   ngOnDestroy(): void {
     this.subManifest.unsubscribe();
   }
-
 }

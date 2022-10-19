@@ -7,10 +7,8 @@ import { IPhoto } from '../../models/main-page.models';
   styleUrls: ['./img-card.component.scss']
 })
 export class ImgCardComponent implements OnInit {
-  // @Input() exper:{name: string, id: number};
   @Input() photo: IPhoto;
   constructor() {
-    // console.log(this.photo.rover.name);
   }
 
   ngOnInit(): void {
