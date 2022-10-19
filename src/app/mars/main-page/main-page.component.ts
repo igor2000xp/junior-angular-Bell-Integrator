@@ -5,6 +5,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { RoverService } from '../../core/services/rover.service';
 import { SolService } from '../../core/services/sol.service';
 import { CameraService } from '../../core/services/camera.service';
+import { PageService } from '../../core/services/page.service';
 // import { ApiGetManifestService } from '../../core/services/api/api-get-manifest.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   // private manifest: IManifest;
   public photos:IPhoto[];
   public camerasArray:Cameras[];
+  public page:number = 1;
 
   // private abc:any;
 
@@ -36,20 +38,31 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private roverService: RoverService,
     private solService: SolService,
     private cameraService: CameraService,
+    private pageService: PageService,
   ) { }
 
   // private tunePagesParams(maxSol: number, currentSol:number) {
   //
   // }
   onClickHandle() {
-    console.log('click');
+    this.page = this.photos.length < 25 ? 1 : this.page + 1;
+    this.pageService.setPage(this.page);
+    console.log('click', this.page, this.photos.length);
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page)
+      .subscribe((el) => {
+        this.photos = el.photos;
+        this.maxPhotoTotal = this.photos.length;
+        console.log(this.photos);
+      });
+    console.log('click', this.page, this.photos.length);
 
   }
 
   private logRover(data: RoverName): void {
     console.log(data, 'receive data');
+    this.page = 1;
     this.rover = data;
-    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe((el) => {
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page).subscribe((el) => {
       this.photos = el.photos;
       this.maxPhotoTotal = this.photos.length;
       console.log(this.photos);
@@ -72,12 +85,18 @@ export class MainPageComponent implements OnInit, OnDestroy {
     // });
   }
   private logSol(sol: number) {
+    this.page = 1;
     this.sol = sol;
-    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe();
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page).subscribe();
   }
   public logCamera(camera: Cameras) {
+    this.page = 1;
     this.camera = camera;
-    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe();
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page).subscribe();
+  }
+  public logPage(page: number) {
+    this.page = page;
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page).subscribe();
   }
 
   ngOnInit(): void {
@@ -85,11 +104,12 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.photos$ = this.apiGetPhotos.photos$;
     // this.apiGetPhotos.photos$
     //   .subscribe();
-    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe();
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera, this.page).subscribe();
 
     this.roverService.rover$.subscribe((rover) => this.logRover(rover));
     this.solService.sol$.subscribe((sol) => this.logSol(sol));
     this.cameraService.camera$.subscribe((camera) => this.logCamera(camera));
+    this.pageService.page$.subscribe((page) => this.logPage(page));
 
     // this.manifest$ = this.apiGetManifest.manifest$;
     // this.subManifest = this.apiGetManifest.getAll(this.rover).subscribe();

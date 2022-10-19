@@ -12,6 +12,7 @@ export class ApiGetPhotoService{
   public rover:RoverName = RoverName.Opportunity;
   public sol:number = 49;
   public camera:Cameras = Cameras.MAST;
+  public page:number = 1;
   public requestString:string = '';
 
   public photos$:BehaviorSubject<IPhoto[]> = new BehaviorSubject<IPhoto[]>([]);
@@ -20,18 +21,19 @@ export class ApiGetPhotoService{
     private http: HttpClient,
     private errorService: ErrorService,
     ) {
-    this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos?sol=${this.sol}&camera=${this.camera}&api_key=${API_KEY}`
+    this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos?sol=${this.sol}&page=0&camera=${this.camera}&api_key=${API_KEY}`
   }
 
-  getAll(rover:RoverName, sol:number, camera:Cameras): Observable<IPhotos> {
-    console.log(rover, sol, camera, 'api-photo');
+  getAll(rover:RoverName, sol:number, camera:Cameras, page:number): Observable<IPhotos> {
+    console.log(rover, sol, camera, page, 'api-photo');
     this.rover = rover;
     this.sol = sol;
     this.camera = camera;
+
     let params = new HttpParams();
     params = params.append('sol', this.sol);
     params = params.append('camera', this.camera);
-    const page = 1;
+    // const page = 1;
     params = params.append('page', page);
     params = params.append('api_key', API_KEY);
 

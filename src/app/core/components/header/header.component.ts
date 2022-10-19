@@ -5,6 +5,7 @@ import { SolService } from '../../services/sol.service';
 import { CameraService } from '../../services/camera.service';
 import { ApiGetManifestService } from '../../services/api/api-get-manifest.service';
 import { Subscription } from 'rxjs';
+// import { PageService } from '../../services/page.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public rover = RoverName.Curiosity;
   public camerasArray:Cameras[];
   public sol = 49;
+  public maxSol = 10;
   public camera = Cameras.MAST;
   public cameraValue = Cameras.MAST;
 
@@ -31,6 +33,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeCameraHandler(camera: Cameras): void {
     // console.log(camera);
     this.cameraService.setCamera(camera);
+    this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
+      const manifest:IManifest = el.photo_manifest;
+      this.maxSol = manifest.photos.length;
+      this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
+      // console.log(this.camerasArray);
+    });
 
   }
   changeRoverHandler(rover: RoverName): void {
@@ -38,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.roverService.setRover(rover);
     this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
       const manifest:IManifest = el.photo_manifest;
+      this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
       // console.log(this.camerasArray);
     });
@@ -46,11 +55,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeSolHandler(sol: number): void {
     // console.log(sol);
     this.solService.setSol(sol);
+    this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
+      const manifest:IManifest = el.photo_manifest;
+      this.maxSol = manifest.photos.length;
+      this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
+      // console.log(this.camerasArray);
+    });
   }
 
   ngOnInit(): void {
     this.subManifest = this.apiGetManifestService.getAll(this.rover).subscribe((el) => {
       const manifest:IManifest = el.photo_manifest;
+      this.maxSol = manifest.photos.length;
       this.camerasArray = manifest.photos[this.sol].cameras as Cameras[];
       // console.log(this.camerasArray);
     });
