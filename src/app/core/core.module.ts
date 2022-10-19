@@ -11,7 +11,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { GetPhotoService } from './services/get-photo.service';
+// import { ApiGetPhotoService } from './services/get-photo.service';
 // import { ParamsInterceptor } from './interceptors/params.interceptor';
 
 const materialModules = [
@@ -21,7 +21,6 @@ const materialModules = [
   ReactiveFormsModule,
   MatNativeDateModule,
   MatNativeDateModule,
-  HttpClientModule,
   MatSliderModule,
 ];
 
@@ -37,10 +36,11 @@ const materialModules = [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ...materialModules,
   ],
   // providers: [
-  //   GetPhotoService, {
+  //   ApiGetPhotoService, {
   //     provide: HTTP_INTERCEPTORS,
   //     useClass: ParamsInterceptor,
   //     multi: true

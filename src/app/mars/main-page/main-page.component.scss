@@ -14,13 +14,12 @@
       row-gap: 1vw;
       justify-content: space-around;
 
-
       .imgWrapper {
         width: 19%;
-
       }
     }
-
-
+  }
+  .paginator mat-paginator mat-paginator-outer-container mat-paginator-container mat-paginator-page-size, ng-star-inserted {
+    display: none;
   }
 }

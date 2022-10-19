@@ -40,6 +40,19 @@ export enum Status {
   active,
   complete,
 }
+export interface IWrappedManifest{
+  photo_manifest: IManifest;
+}
+export interface IManifest {
+  name: string;
+  landing_date: Date;
+  launch_date: Date;
+  status: string;
+  max_sol: number;
+  max_date: Date;
+  total_photos: number;
+  photos: IManifestPhotos[];
+}
 export interface IManifestPhotos {
   sol: number;
   earth_date: Date;
@@ -56,14 +69,4 @@ export enum Cameras {
   NAVCAM = 'NAVCAM',
   PANCAM = 'PANCAM',
   MINITES= 'MINITES',
-}
-export interface IPhotoManifest {
-  name: string;
-  landing_date: Date;
-  launch_date: Date;
-  status: string;
-  max_sol: number;
-  max_date: Date;
-  total_photos: number;
-  photos: IPhoto[];
 }
