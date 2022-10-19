@@ -82,10 +82,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
     // });
     // this.maxSol = this.manifest.max_sol;
 
-    this.photos$ = this.apiGetPhotos.photos$;
+    // this.photos$ = this.apiGetPhotos.photos$;
     // this.apiGetPhotos.photos$
     //   .subscribe();
-    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe();
+
+    this.subPhoto = this.apiGetPhotos.getAll(this.rover, this.sol, this.camera).subscribe((item) => {
+      const photo = { ...item };
+      }
+    );
   }
 
   ngOnDestroy(): void {
