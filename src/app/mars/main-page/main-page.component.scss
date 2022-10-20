@@ -19,6 +19,8 @@
     background-repeat: no-repeat;
     @include media-laptop {
       height: 29vw;
+    }
+    @include media-mobile {
       background-size: contain;
     }
   }
