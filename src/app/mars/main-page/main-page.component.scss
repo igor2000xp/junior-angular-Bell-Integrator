@@ -3,7 +3,7 @@
   width: 100%;
 
   .parallax {
-    margin: 1px 0 0 0;
+    margin: 115px 0 0 0;
     width: 100%;
     height: 400px;
     background-image: url("https://raw.githubusercontent.com/igor2000xp/junior-angular-Bell-Integrator/develop/src/assets/img/scale_2400-0.jpg");
@@ -28,11 +28,11 @@
       }
     }
     .paginator {
-      width: 100%;
+      width: 100%;;
       margin: 0 auto;
       display: flex;
       justify-content: right;
-      padding: 20px 0 0 0;
+      padding: 20px 0;
 
       .moreButton {
         margin: 0 2vw 0 0;
