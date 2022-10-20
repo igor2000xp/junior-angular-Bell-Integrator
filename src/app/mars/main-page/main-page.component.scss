@@ -19,6 +19,7 @@
     background-repeat: no-repeat;
     @include media-laptop {
       height: 29vw;
+      background-size: contain;
     }
   }
 
