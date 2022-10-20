@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/abstract/constants";
+@import "./assets/styles/abstract/mixins";
+@import "./assets/styles/abstract/placeholder";
+
 body {
   margin: 0;
 }

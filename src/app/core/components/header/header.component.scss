@@ -14,7 +14,7 @@
     margin: 0 auto;
 
     .application-header {
-      font-size: 15px;
+      font-size: 1.5vw;
     }
   }
   .example-spacer {
@@ -25,5 +25,7 @@
   }
   .mat-form-field {
     margin: 10px 20px 0;
+    width: 14vw;
+    font-size: 1.9vw;
   }
 }
