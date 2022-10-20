@@ -19,12 +19,12 @@
 @mixin media-desktop {
   @media (min-width: $content-max-laptop - 1px) { @content; }
 }
-@mixin media-laptop {
-  @media (max-width:$content-max-laptop) and (min-width:$content-max-tablet) { @content; }
-}
+//@mixin media-laptop {
+//  @media (max-width: 1000px) { @content; }
+//}
 @mixin media-tablet {
-  @media (max-width: $content-max-tablet - 1px) and (min-width: $content-max-mobile) { @content; }
+  @media (max-width: $content-max-tablet) { @content; }
 }
 @mixin media-mobile  {
-  @media (max-width: $content-max-mobile) and (min-width: $mobile-width - 20px) { @content; }
+  @media (max-width: $content-max-mobile) { @content; }
 }

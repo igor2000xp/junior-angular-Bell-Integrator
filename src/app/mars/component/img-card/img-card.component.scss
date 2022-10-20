@@ -1,3 +1,10 @@
+@mixin media-laptop {
+  @media (max-width: 1000px) { @content; }
+};
+@mixin media-mobile {
+  @media (max-width: 600px) { @content; }
+};
+
 :host {
   .imgWrapper {
     width: 17vw;
@@ -6,6 +13,11 @@
     overflow: hidden;
     margin: 0 auto;
 
+
+    @include media-mobile {
+      width: 29vw;
+      height: 29vw;
+    }
     img {
       position: absolute;
       top: 0;
