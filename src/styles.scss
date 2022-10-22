@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "src/assets/styles/abstract/constants";
-@import "src/assets/styles/abstract/mixins";
-@import "src/assets/styles/abstract/placeholder";
+//@import "src/assets/styles/abstract/constants";
+//@import "./styles/abstract/mixins";
+//@use "./styles/abstract/mixins";
+//@import "src/assets/styles/abstract/placeholder";
 
 //@mixin media-laptop {
 //  @media (max-width: 1000px) { @content; }

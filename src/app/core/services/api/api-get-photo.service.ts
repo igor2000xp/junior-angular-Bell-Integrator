@@ -29,11 +29,15 @@ export class ApiGetPhotoService{
     this.sol = sol;
     this.camera = camera;
 
-    let params = new HttpParams();
-    params = params.append('sol', this.sol);
-    params = params.append('camera', this.camera);
-    params = params.append('page', page);
-    params = params.append('api_key', API_KEY);
+    let params = new HttpParams()
+      .set('sol', this.sol)
+      .set('camera', this.camera)
+      .set('page', page)
+      .set('api_key', API_KEY);
+    // params = params.append('sol', this.sol);
+    // params = params.append('camera', this.camera);
+    // params = params.append('page', page);
+    // params = params.append('api_key', API_KEY);
 
     this.requestString = `${HTML_ROVER_TEMPLATE}${this.rover}/photos`;
     return this.http.get<IPhotos>(this.requestString, { params: params })
