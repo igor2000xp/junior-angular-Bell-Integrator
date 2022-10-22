@@ -1,0 +1,22 @@
+<div class="parallax"></div>
+<section class="wrapper">
+  <div class="cardsWrapper">
+    <div *ngIf="loading">
+      <h2>Loading...</h2>
+    </div>
+    <app-img-card
+      class="imgWrapper"
+      *ngFor="let photo of photos$ | async" [photo]="photo"
+    >
+    </app-img-card>
+  </div>
+  <div class="paginator">
+    <button class="moreButton" mat-stroked-button color="primary" (click)="onClickHandle()">Load more...</button>
+<!--    <mat-paginator [length]="maxPhoto"-->
+<!--                   [pageSize]="25"-->
+<!--                   [pageSizeOptions]="[25]"-->
+<!--                   aria-label="Select page">-->
+<!--    </mat-paginator>-->
+
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<section class="wrapper">
+  <mat-toolbar class="toolbar" color="primary">
+
+    <button mat-icon-button class="example-icon favorite-icon icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <span class="application-header hidden"> application for getting photos from</span><pre> </pre>
+    <span class="application-header">Mars rovers</span>
+    <span class="example-spacer"></span>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Select rover</mat-label>
+      <mat-select [value]="rover" [(ngModel)]="rover" (selectionChange)="changeRoverHandler(rover)">
+        <mat-option value="Curiosity">Curiosity rover</mat-option>
+        <mat-option value="Opportunity">Opportunity rover</mat-option>
+        <mat-option value="Spirit">Spirit rover</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Input sol fro 1 to {{maxSol}}</mat-label>
+      <input matInput [value]="'49'" [(ngModel)]="sol" (change)="changeSolHandler(sol)">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Select camera</mat-label>
+      <mat-select [value]="camera" [(ngModel)]="cameraValue" (selectionChange)="changeCameraHandler(cameraValue)">
+        <mat-option *ngFor="let camera of camerasArray" value="{{camera}}">{{camera}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-toolbar>
+</section>

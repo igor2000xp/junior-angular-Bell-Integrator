@@ -1,0 +1,53 @@
+html {
+  font-size: 10px;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "Roboto", Verdana sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+h1 {
+  @include font-mix($size: 11.4rem, $height: 80%, $weight: 700);
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  @include font-mix($size: 4.8rem, $height: 120%, $weight: 400);
+  margin: 0;
+  padding: 0;
+}
+h3 {
+  @include font-mix($size: 3.6rem, $height: 130%, $weight: 400);
+  margin: 0;
+  padding: 0;
+}
+h4 {
+  @include font-mix($size: 2.4rem, $height: 120%, $weight: 400);
+  margin: 0;
+  padding: 0;
+}
+h5 {
+  @include font-mix($size: 1.6rem, $height: 140%, $weight: 500);
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+h6 {
+  @include font-mix($size: 1.6rem, $height: 140%, $weight: 500);
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+body {
+  @include font-mix($size: 1.6rem, $height: 140%, $weight: 400);
+}
+p {
+  @include font-mix($size: 1.5rem, $height: 120%, $weight: 300);
+  margin: 0;
+  padding: 0;
+}
+input {
+  border: 0;
+}

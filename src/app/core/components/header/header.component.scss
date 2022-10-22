@@ -1,0 +1,45 @@
+@import "src/styles";
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: #3f51b5;
+  position: fixed;
+  left: 0;
+  top: 0;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.59);
+  z-index: 100;
+
+  .wrapper {
+    max-width: $content-wrapper-max-desktop;
+    margin: 0 auto;
+
+    .application-header {
+      font-size: 1.5vw;
+      @include media-desktop {
+        font-size: 20px;
+      }
+    }
+    .hidden {
+      @include media-laptop {
+        display: none;
+      }
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar {
+      height: auto;
+    }
+    .mat-form-field {
+      margin: 10px 20px 0;
+      width: 14vw;
+      font-size: 1.9vw;
+      @include media-desktop {
+        font-size: 20px;
+      }
+    }
+  }
+}
+

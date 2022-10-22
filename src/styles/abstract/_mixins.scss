@@ -1,0 +1,30 @@
+@mixin font-mix($size: 1.5rem, $height: 120%, $weight: 400, $style: normal) {
+  font-size: $size;
+  font-family: 'Roboto', sans-serif;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $height;
+}
+
+@mixin border($color: white) {
+  border: 1px solid $color;
+}
+@mixin display-flex($justify: center, $direction: row, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin media-desktop {
+  @media (min-width: $content-max-laptop - 1px) { @content; }
+}
+@mixin media-laptop {
+  @media (max-width: 1000px) { @content; }
+}
+//@mixin media-tablet {
+//  @media (max-width: 1000px) { @content; }
+//}
+@mixin media-mobile {
+  @media (max-width: 600px) { @content; }
+};
