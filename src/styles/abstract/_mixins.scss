@@ -16,12 +16,12 @@
   align-items: $align;
 }
 
-//@mixin media-desktop {
-//  @media (min-width: $content-max-laptop - 1px) { @content; }
-//}
-//@mixin media-laptop {
-//  @media (max-width: 1100px) { @content; }
-//}
+@mixin media-desktop {
+  @media (min-width: $content-max-laptop - 1px) { @content; }
+}
+@mixin media-laptop {
+  @media (max-width: 1000px) { @content; }
+}
 //@mixin media-tablet {
 //  @media (max-width: 1000px) { @content; }
 //}

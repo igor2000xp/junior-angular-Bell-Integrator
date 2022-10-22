@@ -1,12 +1,6 @@
-@mixin media-laptop {
-  @media (max-width: 1000px) { @content; }
-};
-@mixin media-mobile {
-  @media (max-width: 600px) { @content; }
-};
+@import "src/styles";
 
 :host {
-
   display: block;
   width: 100%;
   background-color: #3f51b5;
@@ -16,23 +10,22 @@
   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.59);
   z-index: 100;
-  //@include media-laptop {
-  //  background-color: #757575;
-  //};
 
   .wrapper {
-    max-width: 1160px;
+    max-width: $content-wrapper-max-desktop;
     margin: 0 auto;
 
     .application-header {
       font-size: 1.5vw;
+      @include media-desktop {
+        font-size: 20px;
+      }
     }
     .hidden {
       @include media-laptop {
         display: none;
       }
     }
-
     .example-spacer {
       flex: 1 1 auto;
     }
@@ -43,9 +36,10 @@
       margin: 10px 20px 0;
       width: 14vw;
       font-size: 1.9vw;
+      @include media-desktop {
+        font-size: 20px;
+      }
     }
-
   }
-
 }
 

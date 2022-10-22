@@ -1,9 +1,4 @@
-@mixin media-laptop {
-  @media (max-width: 1000px) { @content; }
-};
-@mixin media-mobile {
-  @media (max-width: 600px) { @content; }
-};
+@import "src/styles";
 
 :host {
   .imgWrapper {
