@@ -17,6 +17,7 @@
     }
     @include media-laptop {
       height: 29vw;
+      background-size: contain;
     }
     @include media-mobile {
       background-size: contain;
